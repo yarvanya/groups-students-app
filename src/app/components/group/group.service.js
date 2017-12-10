@@ -5,6 +5,7 @@ export class GroupService {
     this.groups = [
       {
         name: "КТ-5",
+        curatorName: "Strepko Ihor",
         students: [
           {fullName: "Ivan Yarymovych", email: "ivan11yarymovych@gmail.com", age: 23},
           {fullName: "Vlad Dzhus", email: "vlad.dzhus@gmail.com", age: 24},
@@ -13,6 +14,7 @@ export class GroupService {
       },
       {
         name: "АУ-5",
+        curatorName: "Phedyna Bohdana",
         students: [
           {fullName: "Orest Denyshyn", email: "o.d.@gmail.com", age: 21},
           {fullName: "Slava Shkilnyi", email: "s.s.@gmail.com", age: 24},

@@ -15,7 +15,9 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     })
     .state('groups', {
       url: 'groups',
-      template: '<h1>Here will be list of all groups</h1>',
+      templateUrl: 'app/components/group/group.html',
+      controller: 'GroupController',
+      controllerAs: 'group',
       parent: 'home'
     })
     .state('students', {
