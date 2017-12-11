@@ -1,6 +1,6 @@
 export function routerConfig ($stateProvider, $urlRouterProvider) {
   'ngInject';
-  
+
   $stateProvider
     .state('home', {
       url: '/',
@@ -22,7 +22,9 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
     })
     .state('students', {
       url: 'students',
-      template: '<h1>Here will be list of all students</h1>',
+      templateUrl: 'app/components/student/student.html',
+      controller: 'StudentController',
+      controllerAs: 'student',
       parent: 'home'
     });
 

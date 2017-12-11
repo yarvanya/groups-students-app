@@ -1,0 +1,21 @@
+<div>
+  <h1 class="display-4">All students</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Group</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="groupItem in student.groupsList">
+      <tr ng-repeat="studentItem in groupItem.students">
+        <td>{{studentItem.fullName}}</td>
+        <td>{{studentItem.email}}</td>
+        <td>{{studentItem.age}}</td>
+        <td>{{groupItem.name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
