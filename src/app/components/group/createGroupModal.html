@@ -1,0 +1,30 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">Add new group to the app</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" required>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Enter name" ng-required="required" ng-model="group.newGroup.name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-3">Curator name</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Enter curator name" ng-required="required" ng-model="group.newGroup.curatorName">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="group.createNewGroup();$hide();">Save</button>
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
