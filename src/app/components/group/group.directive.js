@@ -31,7 +31,8 @@ export class GroupController {
       title: 'Success!',
       content: 'You have just successfully created new group!',
       type: 'success',
-      duration: 5
+      duration: 5,
+      container: "body"
     });
   }
 
