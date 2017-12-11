@@ -17,9 +17,15 @@ export class StudentController {
     'ngInject';
 
     this.groupsList = groups.groups;
+    this.newStudent = {};
   }
 
   selectStudent(student) {
     this.clickedStudent = student;
+  }
+
+  createStudent(group) {
+    group.students.push(this.newStudent);
+    this.newStudent = {};
   }
 }
