@@ -18,4 +18,8 @@ export class StudentController {
 
     this.groupsList = groups.groups;
   }
+
+  selectStudent(student) {
+    this.clickedStudent = student;
+  }
 }

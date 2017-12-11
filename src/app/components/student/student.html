@@ -7,6 +7,7 @@
         <th>Email</th>
         <th>Age</th>
         <th>Group</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody ng-repeat="groupItem in student.groupsList">
@@ -15,6 +16,18 @@
         <td>{{studentItem.email}}</td>
         <td>{{studentItem.age}}</td>
         <td>{{groupItem.name}}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info"
+            data-animation="am-fade-and-slide-top"
+            data-template-url="app/components/student/editStudentModal.html"
+            bs-modal="modal"
+            ng-click="student.selectStudent(studentItem)"
+          >
+            Edit
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
