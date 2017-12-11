@@ -13,11 +13,20 @@ export function GroupDirective() {
 }
 
 export class GroupController {
-  constructor(groups) {
+  constructor(groups, $modal) {
     'ngInject';
 
     this.groupsList = [];
+    this.newGroup = {};
     this.getGroupList(groups);
+    this.groupModal = $modal;
+  }
+
+  openGroupModal() {
+    return this.groupModal({
+      "title": "Create new group",
+      "content": "Hello Modal"
+    });
   }
 
   getGroupList(groups) {

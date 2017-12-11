@@ -1,18 +1,30 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Name</th>
-      <th>Amount of students</th>
-      <th>Curator</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="group in group.groupsList">
-      <td>{{$index+1}}</td>
-      <td>{{group.name}}</td>
-      <td>{{group.students.length}}</td>
-      <td>{{group.curatorName}}</td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Amount of students</th>
+        <th>Curator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="group in group.groupsList">
+        <td>{{$index+1}}</td>
+        <td>{{group.name}}</td>
+        <td>{{group.students.length}}</td>
+        <td>{{group.curatorName}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button
+    type="button"
+    class="btn btn-lg btn-primary"
+    data-animation="am-fade-and-scale"
+    data-placement="center"
+    ng-click="group.openGroupModal()"
+  >
+    New group
+  </button>
+</div>
