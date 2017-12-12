@@ -26,12 +26,12 @@ export class GroupController {
     this.groupsList = groups.getGroups();
   }
 
-  openGroupAlert() {
+  openGroupAlert(content) {
     return this.groupAlert({
       title: 'Success!',
-      content: 'You have just successfully created new group!',
+      content: content,
       type: 'success',
-      duration: 5
+      duration: 4
     });
   }
 
@@ -42,7 +42,7 @@ export class GroupController {
       {groupId: this.groupsList[groupsListLength - 1].groupId + 1,students: []}
     );
     this.groupsList.push(assignGroup);
-    this.openGroupAlert();
+    this.openGroupAlert(`You have just successfully created new group: ${this.newGroup.name}`);
     this.newGroup = {};
   }
 
