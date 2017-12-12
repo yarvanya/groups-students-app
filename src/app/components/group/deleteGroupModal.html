@@ -8,13 +8,18 @@
       <div class="modal-body">
         <div class="panel panel-default">
           <div class="panel-body panel-body-for-deleting">
-            Are you sure you want to delete this group: {{group.clickedGroup.name}} ?
-            Because you will not be able to undo this action!</div>
+            <h4>Are you sure you want to delete this group: {{group.clickedGroup.name}} ?</h4>
+            Because here are list of students:
+            <div ng-repeat="studentItem in groupItem.students">
+              <span>{{$index+1}}.{{studentItem.fullName}}</span>
+            </div>
+            And this data will be deleted too!
+          </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="group.deleteGroup()">Yes</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="$hide()">No</button>
       </div>
     </div>
   </div>
