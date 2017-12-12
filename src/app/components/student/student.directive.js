@@ -47,6 +47,7 @@ export class StudentController {
       group.students.push(assignStudent);
       this.openStudentAlert(`You have just successfully created new student: ${this.newStudent.fullName}`);
       this.newStudent = {};
+      this.disabledButton = true;
   }
 
   updateStudent(student) {
