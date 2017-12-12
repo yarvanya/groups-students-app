@@ -36,7 +36,11 @@ export class GroupController {
   }
 
   createNewGroup() {
-    const assignGroup = Object.assign({}, this.newGroup, {students: []});
+    const groupsListLength = this.groupsList.length;
+    const assignGroup = Object.assign({},
+      this.newGroup,
+      {groupId: this.groupsList[groupsListLength - 1].groupId + 1,students: []}
+    );
     this.groupsList.push(assignGroup);
     this.openGroupAlert();
     this.newGroup = {};

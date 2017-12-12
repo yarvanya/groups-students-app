@@ -25,7 +25,9 @@ export class StudentController {
   }
 
   createStudent(group) {
-    group.students.push(this.newStudent);
+    const studentListLength = group.students.length;
+    const assignStudent = Object.assign({}, this.newStudent, {studentId: group.students[studentListLength - 1].studentId + 1});
+    group.students.push(assignStudent);
     this.newStudent = {};
   }
 
