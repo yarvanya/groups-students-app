@@ -16,6 +16,7 @@ export class StudentController {
   constructor(groups, $alert) {
     'ngInject';
 
+    this.disabledButton = true;
     this.groupsList = groups.groups;
     this.newStudent = {};
     this.studentAlert = $alert;
@@ -26,7 +27,7 @@ export class StudentController {
   }
 
   openStudentAlert(content) {
-    return this.studentAlert({
+    this.studentAlert({
       title: 'Success!',
       content: content,
       type: 'success',
@@ -34,12 +35,18 @@ export class StudentController {
     });
   }
 
+  studentFieldsValidation(group) {
+    if (this.newStudent.fullName && this.newStudent.email && this.newStudent.age && group) {
+      this.disabledButton = false;
+    }
+  }
+
   createStudent(group) {
-    const studentListLength = group.students.length;
-    const assignStudent = Object.assign({}, this.newStudent, {studentId: group.students[studentListLength - 1].studentId + 1});
-    group.students.push(assignStudent);
-    this.openStudentAlert(`You have just successfully created new student: ${this.newStudent.fullName}`);
-    this.newStudent = {};
+      const studentListLength = group.students.length;
+      const assignStudent = Object.assign({}, this.newStudent, {studentId: group.students[studentListLength - 1].studentId + 1});
+      group.students.push(assignStudent);
+      this.openStudentAlert(`You have just successfully created new student: ${this.newStudent.fullName}`);
+      this.newStudent = {};
   }
 
   updateStudent(student) {
