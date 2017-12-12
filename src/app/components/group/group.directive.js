@@ -50,7 +50,12 @@ export class GroupController {
     this.newGroup = {};
   }
 
-  deleteGroup() {
+  updateGroup(group) {
+    this.openGroupAlert(`You have just successfully updated group: ${group.name}`);
+  }
+
+  deleteGroup(group) {
     this.groupsList.splice(this.groupsList.indexOf(this.clickedGroup), 1);
+    this.openGroupAlert(`You have just successfully deleted group: ${group.name}`);
   }
 }
