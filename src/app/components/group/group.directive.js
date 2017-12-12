@@ -26,6 +26,10 @@ export class GroupController {
     this.groupsList = groups.getGroups();
   }
 
+  selectGroup(group) {
+    this.clickedGroup = group;
+  }
+
   openGroupAlert(content) {
     return this.groupAlert({
       title: 'Success!',

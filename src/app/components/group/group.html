@@ -7,6 +7,8 @@
         <th>Curator</th>
         <th>Students</th>
         <th>Amount of students</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +24,28 @@
           </table>
         </td>
         <td>{{groupItem.students.length}}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info"
+            data-animation="am-fade-and-slide-top"
+            data-template-url="app/components/group/editGroupModal.html"
+            bs-modal="modal"
+            ng-click="group.selectGroup(groupItem)"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-animation="am-fade-and-slide-top"
+            bs-modal="modal"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
