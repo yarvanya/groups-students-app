@@ -1,0 +1,21 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">Deleting this student</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel panel-default">
+          <div class="panel-body panel-body-for-deleting">
+            Are you sure you want to delete student: {{student.clickedStudent.fullName}} ?
+            Because you will not be able to undo this action!</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="student.deleteStudent(groupItem)">Yes</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>

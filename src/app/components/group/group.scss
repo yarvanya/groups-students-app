@@ -18,6 +18,15 @@
 .alert {
   position: absolute;
   top: 10px;
-  right: 0px;
+  right: 5px;
   z-index: 1000;
+}
+
+.modal-header {
+  background-color: #00bdff;
+  color: #ffffff;
+}
+
+.panel-body-for-deleting {
+  border-left: 6px solid red;
 }

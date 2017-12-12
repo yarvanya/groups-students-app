@@ -8,6 +8,7 @@
         <th>Age</th>
         <th>Group</th>
         <th>Edit</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody ng-repeat="groupItem in student.groupsList">
@@ -26,6 +27,18 @@
             ng-click="student.selectStudent(studentItem)"
           >
             Edit
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-animation="am-fade-and-slide-top"
+            data-template-url="app/components/student/deleteStudentModal.html"
+            bs-modal="modal"
+            ng-click="student.selectStudent(studentItem)"
+          >
+            Delete
           </button>
         </td>
       </tr>

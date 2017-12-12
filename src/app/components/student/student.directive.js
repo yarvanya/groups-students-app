@@ -28,4 +28,8 @@ export class StudentController {
     group.students.push(this.newStudent);
     this.newStudent = {};
   }
+
+  deleteStudent(group) {
+    group.students.splice(group.students.indexOf(this.clickedStudent), 1);
+  }
 }
