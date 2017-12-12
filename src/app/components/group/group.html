@@ -4,16 +4,15 @@
       <tr>
         <th>Number</th>
         <th>Name</th>
-        <th>Amount of students</th>
         <th>Curator</th>
         <th>Students</th>
+        <th>Amount of students</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="groupItem in group.groupsList">
         <td>{{$index+1}}</td>
         <td>{{groupItem.name}}</td>
-        <td>{{groupItem.students.length}}</td>
         <td>{{groupItem.curatorName}}</td>
         <td>
           <table>
@@ -22,6 +21,7 @@
             </tr>
           </table>
         </td>
+        <td>{{groupItem.students.length}}</td>
       </tr>
     </tbody>
   </table>
