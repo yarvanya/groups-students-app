@@ -50,4 +50,7 @@ export class GroupController {
     this.newGroup = {};
   }
 
+  deleteGroup() {
+    this.groupsList.splice(this.groupsList.indexOf(this.clickedGroup), 1);
+  }
 }
