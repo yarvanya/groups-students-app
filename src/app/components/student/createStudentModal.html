@@ -15,7 +15,6 @@
                 class="form-control"
                 placeholder="Enter full name"
                 ng-model="student.newStudent.fullName"
-                ng-change="student.createStudentFieldValidation()"
                 required
               >
             </div>
@@ -28,7 +27,6 @@
                 class="form-control"
                 placeholder="Enter email"
                 ng-model="student.newStudent.email"
-                ng-change="student.createStudentFieldValidation()"
                 required
               >
             </div>
@@ -41,7 +39,6 @@
                 class="form-control"
                 placeholder="Enter age"
                 ng-model="student.newStudent.age"
-                ng-change="student.createStudentFieldValidation()"
                 required
               >
             </div>
@@ -53,7 +50,6 @@
                 class="form-control"
                 id="group"
                 ng-model="group"
-                ng-change="student.createStudentFieldValidation(group)"
                 ng-options="groupItem.name for groupItem in student.groupsList"
                 required
               >
@@ -68,7 +64,7 @@
                 type="submit"
                 class="btn btn-info"
                 data-dismiss="modal"
-                ng-disabled="student.disabledCreateButton"
+                ng-disabled="student.createStudentFieldValidation(group)"
                 ng-click="student.createStudent(group);$hide();"
               >
                 Create
