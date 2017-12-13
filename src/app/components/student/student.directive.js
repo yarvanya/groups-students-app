@@ -16,7 +16,8 @@ export class StudentController {
   constructor(groups, $alert) {
     'ngInject';
 
-    this.disabledButton = true;
+    this.disabledCreateButton = true;
+    this.disabledUpdateButton = true;
     this.groupsList = groups.groups;
     this.newStudent = {};
     this.studentAlert = $alert;
@@ -24,6 +25,15 @@ export class StudentController {
 
   selectStudent(student) {
     this.clickedStudent = student;
+  }
+
+  editStudentFieldValidation(student) {
+    if (student.fullName && student.email && student.age) {
+      this.clickedStudent = student;
+      this.disabledUpdateButton = false;
+    } else {
+      this.disabledUpdateButton = true;
+    }
   }
 
   openStudentAlert(content) {
@@ -35,9 +45,9 @@ export class StudentController {
     });
   }
 
-  studentFieldsValidation(group) {
+  createStudentFieldValidation(group) {
     if (this.newStudent.fullName && this.newStudent.email && this.newStudent.age && group) {
-      this.disabledButton = false;
+      this.disabledCreateButton = false;
     }
   }
 
@@ -47,7 +57,7 @@ export class StudentController {
       group.students.push(assignStudent);
       this.openStudentAlert(`You have just successfully created new student: ${this.newStudent.fullName}`);
       this.newStudent = {};
-      this.disabledButton = true;
+      this.disabledCreateButton = true;
   }
 
   updateStudent(student) {
