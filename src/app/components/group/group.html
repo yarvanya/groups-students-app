@@ -16,13 +16,7 @@
         <td>{{groupItem.groupId}}</td>
         <td>{{groupItem.name}}</td>
         <td>{{groupItem.curatorName}}</td>
-        <td>
-          <table>
-            <tr ng-repeat="studentItem in groupItem.students">
-              <td>{{ studentItem.fullName }}</td>
-            </tr>
-          </table>
-        </td>
+        <td>{{groupItem.students}}</td>
         <td>{{groupItem.students.length}}</td>
         <td>
           <button

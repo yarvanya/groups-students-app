@@ -13,11 +13,19 @@ export function StudentDirective() {
 }
 
 export class StudentController {
-  constructor(groups, $alert) {
+  constructor(groups, students, $alert) {
     'ngInject';
 
     this.disabledUpdateButton = true;
     this.groupsList = groups.groups;
+    this.studentsList = students.students;
+    angular.forEach(students.students, (student) => {
+      angular.forEach(groups.groups, (group) => {
+        if (student.groupId === group.id) {
+          student.group = group.name;
+        }
+      });
+    });
     this.newStudent = {};
     this.studentAlert = $alert;
   }
@@ -52,11 +60,12 @@ export class StudentController {
   }
 
   createStudent(group) {
-      const studentListLength = group.students.length;
-      const assignStudent = Object.assign({}, this.newStudent, {studentId: group.students[studentListLength - 1].studentId + 1});
-      group.students.push(assignStudent);
-      this.openStudentAlert(`You have just successfully created new student: ${this.newStudent.fullName}`);
-      this.newStudent = {};
+    const studentListLength = this.studentsList.length;
+    console.log("group: ", group);
+    const assignStudent = Object.assign({}, this.newStudent, {studentId: this.studentsList[studentListLength - 1].studentId + 1, groupId: group.groupId, })
+    console.log("assignStudent: ", assignStudent);
+    this.studentsList.push(assignStudent);
+    this.newStudent = {};
   }
 
   updateStudent(student) {

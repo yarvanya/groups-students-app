@@ -13,17 +13,32 @@ export function GroupDirective() {
 }
 
 export class GroupController {
-  constructor(groups, $alert) {
+  constructor(groups, students, $alert) {
     'ngInject';
 
     this.groupsList = [];
+    this.studentsList = [];
     this.newGroup = {};
     this.getGroupList(groups);
+    this.getStudentList(students);
     this.groupAlert = $alert;
+    this.groupStudents = [];
+
+    angular.forEach(students.students, (student) => {
+      angular.forEach(groups.groups, (group) => {
+
+        if (student.groupId === group.id) {
+          group.students.push(student.fullName);
+        }
+      });
+    });
   }
 
   getGroupList(groups) {
     this.groupsList = groups.getGroups();
+  }
+  getStudentList(students) {
+    this.studentsList = students.getStudents();
   }
 
   selectGroup(group) {

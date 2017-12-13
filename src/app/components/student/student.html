@@ -12,13 +12,13 @@
         <th>Delete</th>
       </tr>
     </thead>
-    <tbody ng-repeat="groupItem in student.groupsList">
-      <tr ng-repeat="studentItem in groupItem.students">
+    <tbody>
+      <tr ng-repeat="studentItem in student.studentsList">
         <td>{{studentItem.studentId}}</td>
         <td>{{studentItem.fullName}}</td>
         <td>{{studentItem.email}}</td>
         <td>{{studentItem.age}}</td>
-        <td>{{groupItem.name}}</td>
+        <td>{{studentItem.group}}</td>
         <td>
           <button
             type="button"
