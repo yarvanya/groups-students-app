@@ -3,7 +3,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Id</th>
+        <th>ID</th>
         <th>Name</th>
         <th>Email</th>
         <th>Age</th>
@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="studentItem in student.studentsList">
-        <td>{{studentItem.studentId}}</td>
+        <td>{{studentItem.id}}</td>
         <td>{{studentItem.fullName}}</td>
         <td>{{studentItem.email}}</td>
         <td>{{studentItem.age}}</td>
@@ -26,7 +26,7 @@
             data-animation="am-fade-and-slide-top"
             data-template-url="app/components/student/editStudentModal.html"
             bs-modal="modal"
-            ng-click="student.editStudentFieldValidation(studentItem)"
+            ng-click="student.selectStudent(studentItem)"
           >
             Edit
           </button>
