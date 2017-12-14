@@ -2,22 +2,18 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Id</th>
+        <th>ID</th>
         <th>Name</th>
         <th>Curator</th>
-        <th>Students</th>
-        <th>Amount of students</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="groupItem in group.groupsList">
-        <td>{{groupItem.groupId}}</td>
+        <td>{{groupItem.id}}</td>
         <td>{{groupItem.name}}</td>
         <td>{{groupItem.curatorName}}</td>
-        <td>{{groupItem.students}}</td>
-        <td>{{groupItem.students.length}}</td>
         <td>
           <button
             type="button"

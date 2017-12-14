@@ -2,7 +2,7 @@ export class GroupService {
   constructor() {
     'ngInject';
 
-    this.groups = [
+    return this.groups = [
       {
         id: 1,
         name: "КТ-5",
@@ -14,9 +14,5 @@ export class GroupService {
         curatorName: "Phedyna Bohdana"
       }
     ];
-  }
-
-  getGroups() {
-    return this.groups;
   }
 }

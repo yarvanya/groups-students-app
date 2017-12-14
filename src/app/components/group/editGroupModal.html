@@ -10,18 +10,37 @@
           <div class="form-group">
             <label class="control-label col-sm-2">Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="group.clickedGroup.name" required>
+              <input
+                type="text"
+                class="form-control"
+                ng-value="group.clickedGroup.name"
+                ng-model="group.editedGroup.name"
+                required
+              >
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2">Curator name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" ng-model="group.clickedGroup.curatorName" required>
+              <input
+                type="text"
+                class="form-control"
+                ng-value="group.clickedGroup.curatorName"
+                ng-model="group.editedGroup.curatorName"
+                required
+              >
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-info" ng-click="group.updateGroup(groupItem);$hide();">Update</button>
+              <button
+                type="submit"
+                class="btn btn-info"
+                ng-disabled="group.updateGroupFieldValidation(group.editedGroup)"
+                ng-click="group.updateGroup(group.editedGroup);$hide();"
+              >
+                Update
+              </button>
               <button type="button" class="btn btn-danger" ng-click="$hide()">Close</button>
             </div>
           </div>

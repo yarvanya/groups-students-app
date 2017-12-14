@@ -16,33 +16,16 @@ export class GroupController {
   constructor(groups, students, $alert) {
     'ngInject';
 
-    this.groupsList = [];
-    this.studentsList = [];
+    this.groupsList = groups;
+    this.studentsList = students;
     this.newGroup = {};
-    this.getGroupList(groups);
-    this.getStudentList(students);
+    this.editedGroup = {};
     this.groupAlert = $alert;
-    this.groupStudents = [];
-
-    angular.forEach(students.students, (student) => {
-      angular.forEach(groups.groups, (group) => {
-
-        if (student.groupId === group.id) {
-          group.students.push(student.fullName);
-        }
-      });
-    });
-  }
-
-  getGroupList(groups) {
-    this.groupsList = groups.getGroups();
-  }
-  getStudentList(students) {
-    this.studentsList = students.getStudents();
   }
 
   selectGroup(group) {
     this.clickedGroup = group;
+    this.editedGroup = Object.assign({}, this.clickedGroup);
   }
 
   openGroupAlert(content) {
@@ -54,19 +37,35 @@ export class GroupController {
     });
   }
 
+  createGroupFieldValidation() {
+    if (this.newGroup.name && this.newGroup.curatorName) {
+      return false;
+    }
+    return true;
+  }
+
+  updateGroupFieldValidation(editedGroup) {
+    this.clickedGroupForValidate = Object.assign({}, this.clickedGroup, editedGroup);
+    if (this.clickedGroupForValidate.name && this.clickedGroupForValidate.curatorName) {
+      return false;
+    }
+    return true;
+  }
+
   createNewGroup() {
     const groupsListLength = this.groupsList.length;
     const assignGroup = Object.assign({},
       this.newGroup,
-      {groupId: this.groupsList[groupsListLength - 1].groupId + 1,students: []}
+      {id: this.groupsList[groupsListLength - 1].id + 1}
     );
     this.groupsList.push(assignGroup);
     this.openGroupAlert(`You have just successfully created new group: ${this.newGroup.name}`);
     this.newGroup = {};
   }
 
-  updateGroup(group) {
-    this.openGroupAlert(`You have just successfully updated group: ${group.name}`);
+  updateGroup(editedGroup) {
+    this.clickedGroup = Object.assign(this.clickedGroup, editedGroup);
+    this.openGroupAlert(`You have just successfully updated group: ${this.clickedGroup.name}`);
   }
 
   deleteGroup(group) {
