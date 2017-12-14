@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="groupItem in group.groupsList">
+      <tr ng-repeat="groupItem in group.groupsList | orderBy: 'name'">
         <td>{{groupItem.id}}</td>
         <td>{{groupItem.name}}</td>
         <td>{{groupItem.curatorName}}</td>

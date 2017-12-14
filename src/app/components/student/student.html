@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="studentItem in student.studentsList">
+      <tr ng-repeat="studentItem in student.studentsList | orderBy: 'group'">
         <td>{{studentItem.id}}</td>
         <td>{{studentItem.fullName}}</td>
         <td>{{studentItem.email}}</td>
