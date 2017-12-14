@@ -1,16 +1,12 @@
 export class MainController {
-  constructor($timeout, webDevTec) {
+  constructor(webDevTec) {
     'ngInject';
     this.awesomeThings = [];
-    this.classAnimation = '';
-    this.activate($timeout, webDevTec);
+    this.activate(webDevTec);
   }
 
-  activate($timeout, webDevTec) {
+  activate(webDevTec) {
     this.getWebDevTec(webDevTec);
-    $timeout(() => {
-      this.classAnimation = 'rubberBand';
-    }, 4000);
   }
 
   getWebDevTec(webDevTec) {
@@ -20,5 +16,4 @@ export class MainController {
       awesomeThing.rank = Math.random();
     });
   }
-
 }
