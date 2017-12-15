@@ -1,3 +1,5 @@
+import messages from '../../helper/messages';
+
 export function StudentDirective() {
   'ngInject';
 
@@ -65,20 +67,20 @@ export class StudentController {
 
   createStudent(group) {
     const studentListLength = this.studentsList.length;
-    const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id, }, this.newStudent)
+    const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id, }, this.newStudent);
     this.studentsList.push(assignStudent);
     this.renderStudentsData();
-    this.openStudentAlert(`You have just successfully created student: ${this.newStudent.fullName}`);
+    this.openStudentAlert(`${messages.createStudent} ${this.newStudent.fullName}`);
     this.newStudent = {};
   }
 
   updateStudent(editedStudent) {
     this.clickedStudent = Object.assign(this.clickedStudent, editedStudent);
-    this.openStudentAlert(`You have just successfully updated student: ${this.clickedStudent.fullName}`);
+    this.openStudentAlert(`${messages.updateStudent} ${this.clickedStudent.fullName}`);
   }
 
   deleteStudent(student) {
     this.studentsList.splice(this.studentsList.indexOf(student), 1);
-    this.openStudentAlert(`You have just successfully deleted student: ${this.clickedStudent.fullName}`);
+    this.openStudentAlert(`${messages.deleteStudent} ${this.clickedStudent.fullName}`);
   }
 }

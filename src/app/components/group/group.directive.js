@@ -1,3 +1,5 @@
+import messages from '../../helper/messages';
+
 export function GroupDirective() {
   'ngInject';
 
@@ -59,17 +61,17 @@ export class GroupController {
       {id: this.groupsList[groupsListLength - 1].id + 1}
     );
     this.groupsList.push(assignGroup);
-    this.openGroupAlert(`You have just successfully created new group: ${this.newGroup.name}`);
+    this.openGroupAlert(`${messages.createGroup} ${this.newGroup.name}`);
     this.newGroup = {};
   }
 
   updateGroup(editedGroup) {
     this.clickedGroup = Object.assign(this.clickedGroup, editedGroup);
-    this.openGroupAlert(`You have just successfully updated group: ${this.clickedGroup.name}`);
+    this.openGroupAlert(`${messages.updateGroup} ${this.clickedGroup.name}`);
   }
 
   deleteGroup(group) {
     this.groupsList.splice(this.groupsList.indexOf(this.clickedGroup), 1);
-    this.openGroupAlert(`You have just successfully deleted group: ${group.name}`);
+    this.openGroupAlert(`${messages.deleteGroup} ${group.name}`);
   }
 }
