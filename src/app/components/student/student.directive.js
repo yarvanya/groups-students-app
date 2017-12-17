@@ -67,7 +67,7 @@ export class StudentController {
 
   createStudent(group) {
     const studentListLength = this.studentsList.length;
-    const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id, }, this.newStudent);
+    const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id }, this.newStudent);
     this.studentsList.push(assignStudent);
     this.renderStudentsData();
     this.openStudentAlert(`${messages.createStudent} ${this.newStudent.fullName}`);
