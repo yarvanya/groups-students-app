@@ -1,7 +1,8 @@
-import { GroupController } from '../app/components/group/group.directive';
+import { StudentController } from '../app/components/student/student.directive';
 let expect = chai.expect;
+console.log(StudentController);
 
-describe('GroupController', () => {
+describe('StudentController', () => {
   let groups = [
     {id: 1, name: "PM-5", curatorName: "J R"},
     {id: 2, name: "TM-5", curatorName: "F B"}
@@ -15,18 +16,18 @@ describe('GroupController', () => {
 
   let $alert = () => {};
 
-  let groupCtrl = new GroupController(groups, students, $alert);
+  let studentCtrl = new StudentController(groups, students, $alert);
 
   it('Loads data correctly', () => {
-    expect(groupCtrl).to.not.be.undefined;
+    expect(studentCtrl).to.not.be.undefined;
   });
 
   it('Should groupsList be an array', () => {
-    expect(groupCtrl.groupsList).to.be.an('array');
+    expect(studentCtrl.groupsList).to.be.an('array');
   });
 
   it('Should studentsList be an array', () => {
-    expect(groupCtrl.studentsList).to.be.an('array');
+    expect(studentCtrl.studentsList).to.be.an('array');
   });
 
 });
