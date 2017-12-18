@@ -1,6 +1,7 @@
 import { GroupController } from '../app/components/group/group.directive';
-let expect = chai.expect,
-    should = chai.should();
+import chai from './node_modules/chai/chai';
+
+let expect = chai.expect;
 
 describe('GroupController', () => {
   let groups = [

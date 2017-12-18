@@ -6,7 +6,8 @@
     "node-sass": "^4.7.2"
   },
   "scripts": {
-    "test": "karma start karma.conf.js --single-run"
+    "test": "karma start karma.conf.js --single-run",
+    "lint": "./node_modules/.bin/eslint src/**/**/**/*.js"
   },
   "devDependencies": {
     "babel": "^6.23.0",
