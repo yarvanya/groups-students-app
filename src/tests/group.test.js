@@ -9,8 +9,7 @@ describe('GroupController', () => {
   ];
   let students = [
     {id: 1, groupId: 1, fullName: "John Doe", email: "jd@gmail.com", age: 25},
-    {id: 2, groupId: 1, fullName: "Ivan Ivanov", email: "ii@gmail.com", age: 25},
-    {id: 3, groupId: 1, fullName: "Harry Potter", email: "hp@gmail.com", age: 25}
+    {id: 2, groupId: 1, fullName: "Harry Potter", email: "hp@gmail.com", age: 25}
   ];
   let $alert = () => {};
   let groupCtrl = new GroupController(groups, students, $alert);
@@ -35,8 +34,7 @@ describe('GroupController', () => {
   });
 
   it('Should add new group to groupList after validation', () => {
-    console.log(groupCtrl.newGroup);
-    expect(groupCtrl.createGroupFieldValidation()).to.be.true;
+    expect(groupCtrl.createGroupFieldValidation()).to.be.false;
     groupCtrl.createNewGroup();
     let lastGroup = groupCtrl.groupsList[groupCtrl.groupsList.length - 1];
     expect(groupCtrl.groupsList).to.include(lastGroup);
@@ -62,9 +60,10 @@ describe('GroupController', () => {
     expect(lastGroup.curatorName).to.not.have.lengthOf(0);
   });
 
-  it('Should update selected group in groupsList', () => {
+  it('Should update selected group in groupsList after validation', () => {
     let editedGroup = groupCtrl.groupsList[1];
     editedGroup.name = "NEW-1";
+    expect(groupCtrl.updateGroupFieldValidation(editedGroup)).to.be.false;
     groupCtrl.updateGroup(editedGroup);
     expect(groupCtrl.groupsList).to.include(editedGroup);
   });
@@ -79,7 +78,6 @@ describe('GroupController', () => {
 
   it('Should each property does not be empty after updating selected group', () => {
     let editedGroup = groupCtrl.groupsList[1];
-    console.log(editedGroup);
     expect(editedGroup.id).to.be.above(0);
     expect(editedGroup.name).to.not.have.lengthOf(0);
     expect(editedGroup.curatorName).to.not.have.lengthOf(0);
