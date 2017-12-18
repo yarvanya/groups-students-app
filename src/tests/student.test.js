@@ -1,6 +1,5 @@
 import { StudentController } from '../app/components/student/student.directive';
 let expect = chai.expect;
-console.log(StudentController);
 
 describe('StudentController', () => {
   let groups = [
