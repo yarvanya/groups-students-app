@@ -1,7 +1,7 @@
 module.exports = function (config) {
   'use strict';
 
-  config.set({
+  let configuration = {
     basePath: '',
     frameworks: ['browserify', 'jasmine', 'mocha', 'chai'],
     preprocessors: {
@@ -31,5 +31,11 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     }
-  });
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(configuration);
 };
