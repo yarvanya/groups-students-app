@@ -18,6 +18,10 @@ describe('GroupController', () => {
   groupCtrl.newGroup = {name: "TEST-1", curatorName: "T T"};
   groupCtrl.clickedGroup = groupCtrl.groupsList[0];
 
+  it('Should groupCtrl be an instance of GroupController', () => {
+    expect(groupCtrl).to.be.an.instanceof(GroupController);
+  });
+
   it('Loads data correctly', () => {
     expect(groupCtrl).to.not.be.undefined;
   });
@@ -30,7 +34,9 @@ describe('GroupController', () => {
     expect(groupCtrl.studentsList).to.be.an('array');
   });
 
-  it('Should add new group to groupList', () => {
+  it('Should add new group to groupList after validation', () => {
+    console.log(groupCtrl.newGroup);
+    expect(groupCtrl.createGroupFieldValidation()).to.be.true;
     groupCtrl.createNewGroup();
     let lastGroup = groupCtrl.groupsList[groupCtrl.groupsList.length - 1];
     expect(groupCtrl.groupsList).to.include(lastGroup);
@@ -44,9 +50,16 @@ describe('GroupController', () => {
   it('Should each property be right type after creating new group', () => {
     let lastGroup = groupCtrl.groupsList[groupCtrl.groupsList.length - 1];
     expect(lastGroup).to.be.an('object').that.is.not.empty;
-    expect(lastGroup.id).to.be.an('number');
-    expect(lastGroup.name).to.be.an('string');
-    expect(lastGroup.curatorName).to.be.an('string');
+    expect(lastGroup.id).to.be.a('number');
+    expect(lastGroup.name).to.be.a('string');
+    expect(lastGroup.curatorName).to.be.a('string');
+  });
+
+  it('Should each property does not be empty after creating new group', () => {
+    let lastGroup = groupCtrl.groupsList[groupCtrl.groupsList.length - 1];
+    expect(lastGroup.id).to.be.above(0);
+    expect(lastGroup.name).to.not.have.lengthOf(0);
+    expect(lastGroup.curatorName).to.not.have.lengthOf(0);
   });
 
   it('Should update selected group in groupsList', () => {
@@ -59,9 +72,17 @@ describe('GroupController', () => {
   it('Should each property be right type after updating selected group', () => {
     let editedGroup = groupCtrl.groupsList[1];
     expect(editedGroup).to.be.an('object').that.is.not.empty;
-    expect(editedGroup.id).to.be.an('number');
-    expect(editedGroup.name).to.be.an('string');
-    expect(editedGroup.curatorName).to.be.an('string');
+    expect(editedGroup.id).to.be.a('number');
+    expect(editedGroup.name).to.be.a('string');
+    expect(editedGroup.curatorName).to.be.a('string');
+  });
+
+  it('Should each property does not be empty after updating selected group', () => {
+    let editedGroup = groupCtrl.groupsList[1];
+    console.log(editedGroup);
+    expect(editedGroup.id).to.be.above(0);
+    expect(editedGroup.name).to.not.have.lengthOf(0);
+    expect(editedGroup.curatorName).to.not.have.lengthOf(0);
   });
 
   it('Should delete selected group from groupsList', () => {
