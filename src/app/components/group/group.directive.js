@@ -57,8 +57,8 @@ export class GroupController {
   createNewGroup() {
     const groupsListLength = this.groupsList.length;
     const assignGroup = Object.assign({},
-      this.newGroup,
-      {id: this.groupsList[groupsListLength - 1].id + 1}
+      {id: this.groupsList[groupsListLength - 1].id + 1},
+      this.newGroup
     );
     this.groupsList.push(assignGroup);
     this.openGroupAlert(`${messages.createGroup} ${this.newGroup.name}`);
