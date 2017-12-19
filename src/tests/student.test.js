@@ -1,5 +1,4 @@
 import { StudentController } from '../app/components/student/student.directive';
-import chai from '../../node_modules/chai/chai';
 
 let expect = chai.expect;
 
