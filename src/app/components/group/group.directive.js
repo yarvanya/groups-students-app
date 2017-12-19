@@ -1,3 +1,4 @@
+import { ModalController } from '../modal/modal.directive';
 import messages from '../../helper/messages';
 
 export function GroupDirective() {
@@ -15,7 +16,7 @@ export function GroupDirective() {
 }
 
 export class GroupController {
-  constructor(groups, students, $alert) {
+  constructor(groups, students, $alert, $modal) {
     'ngInject';
 
     this.groupsList = groups;
@@ -23,11 +24,28 @@ export class GroupController {
     this.newGroup = {};
     this.editedGroup = {};
     this.groupAlert = $alert;
+    this.groupModal = $modal;
+/*    this.modalCtrl = new ModalController(this.groupModal);*/
   }
 
   selectGroup(group) {
-    this.clickedGroup = group;
-    this.editedGroup = Object.assign({}, this.clickedGroup);
+    let self = this;
+    let controller = () => {
+      this.clickedGroup = group;
+      this.studentsList = self.studentsList;
+      this.groupsList = self.groupsList;
+      this.editedGroup = Object.assign({}, this.clickedGroup);
+      this.updateGroup = () => {
+        self.updateGroup();
+      };
+      this.createGroupFieldValidation = () => {
+        self.createGroupFieldValidation();
+      }
+    };
+    this.controllerAs = "groupCntr";
+    this.templateUrl = "app/components/group/editGroupModal.html";
+
+    this.modalCtrl.openModal(controller, this.controllerAs, this.templateUrl);
   }
 
   openGroupAlert(content) {
