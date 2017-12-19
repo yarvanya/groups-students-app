@@ -1,5 +1,5 @@
 import { GroupController } from '../app/components/group/group.directive';
-import chai from './node_modules/chai/chai';
+import chai from '../../node_modules/chai/chai';
 
 let expect = chai.expect;
 
