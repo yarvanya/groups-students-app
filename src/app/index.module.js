@@ -26,5 +26,5 @@ angular.module('groupStudent', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize
   .controller('ModalController', ModalController)
   .directive('navbar', NavbarDirective)
   .directive('group', GroupDirective)
-  .directive('modal', ModalDirective)
-  .directive('student', StudentDirective);
+  .directive('student', StudentDirective)
+  .directive('modal', ModalDirective);

@@ -19,6 +19,7 @@
             type="button"
             class="btn btn-info"
             data-animation="am-fade-and-slide-top"
+            data-template-url="app/components/group/editGroupModal.html"
             ng-click="group.selectGroup(groupItem)"
           >
             Edit
@@ -29,8 +30,6 @@
             type="button"
             class="btn btn-danger"
             data-animation="am-fade-and-slide-top"
-            data-template-url="app/components/group/deleteGroupModal.html"
-            bs-modal="modal"
             ng-click="group.selectGroup(groupItem)"
           >
             Delete
@@ -49,15 +48,11 @@
     Add new group
   </button>
 
-  <div>
-    <modal
-      modal-id="modal.id"
-      modal-title="modal.title"
-      modal-body="modal.body"
-      modal-footer="modal.footer"
-      modal-header="modal.header">
-    </modal>
-    <a data-target="#groupModal" role="button" class="btn btn-success" data-toggle="modal">Launch Demo Modal</a>
-  </div>
+  <modal
+    modal-title="group.title"
+    modal-body="group.body"
+    modal-footer="group.footer"
+  >
+  </modal>
 
 </div>

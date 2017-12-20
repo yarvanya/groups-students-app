@@ -5,7 +5,7 @@ export function GroupDirective() {
   'ngInject';
 
   let directive = {
-    restrict: 'E',
+    restrict: 'C',
     templateUrl: 'app/components/group/group.html',
     controller: GroupController,
     controllerAs: 'vm',
@@ -16,36 +16,26 @@ export function GroupDirective() {
 }
 
 export class GroupController {
-  constructor(groups, students, $alert, $modal) {
+  constructor(groups, students, $alert, $scope) {
     'ngInject';
+
+    this.title="title";
+    this.body="body";
+    this.footer="footer";
 
     this.groupsList = groups;
     this.studentsList = students;
     this.newGroup = {};
     this.editedGroup = {};
     this.groupAlert = $alert;
-    this.groupModal = $modal;
-/*    this.modalCtrl = new ModalController(this.groupModal);*/
+    this.groupScope = $scope;
   }
 
   selectGroup(group) {
-    let self = this;
-    let controller = () => {
-      this.clickedGroup = group;
-      this.studentsList = self.studentsList;
-      this.groupsList = self.groupsList;
-      this.editedGroup = Object.assign({}, this.clickedGroup);
-      this.updateGroup = () => {
-        self.updateGroup();
-      };
-      this.createGroupFieldValidation = () => {
-        self.createGroupFieldValidation();
-      }
-    };
-    this.controllerAs = "groupCntr";
-    this.templateUrl = "app/components/group/editGroupModal.html";
+    this.clickedGroup = group;
+    this.editedGroup = Object.assign({}, this.clickedGroup);
 
-    this.modalCtrl.openModal(controller, this.controllerAs, this.templateUrl);
+    this.groupScope.$broadcast('pleaseOpenDeleteModal', group);
   }
 
   openGroupAlert(content) {
@@ -92,4 +82,5 @@ export class GroupController {
     this.groupsList.splice(this.groupsList.indexOf(this.clickedGroup), 1);
     this.openGroupAlert(`${messages.deleteGroup} ${group.name}`);
   }
+
 }

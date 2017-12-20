@@ -8,12 +8,14 @@ export function ModalDirective() {
       header: '=modalHeader',
       body: '=modalBody',
       footer: '=modalFooter',
-      id: '=modalId'
+      callbackbuttonleft: '&ngClickLeftButton',
+      callbackbuttonright: '&ngClickRightButton',
+      handler: '=lolo'
     },
     templateUrl: 'app/components/modal/modal.html',
     transclude: true,
     controller: ModalController,
-    controllerAs: 'vm',
+    controllerAs: 'modalCntr',
     bindToController: true
   };
 
@@ -21,28 +23,27 @@ export function ModalDirective() {
 }
 
 export class ModalController {
-  constructor($modal) {
+  constructor($scope, $modal) {
     'ngInject';
 
-    this.title = 'Title';
-    this.header = 'Put here your header';
-    this.body = 'Put here your body';
-    this.footer = 'Put here your footer';
-    this.id = 'groupModal';
+    this.separateModal = $modal;
 
-    console.log(this);
-    this.myModal = $modal;
+    $scope.$on('pleaseOpenDeleteModal', (event, data) => {
+      console.log(data);
+      console.log(event);
+      this.openSeparateModal();
+    });
   }
 
-  openModal(controller, controllerAs, template){
-    return this.myModal({
-      controller: controller,
-      controllerAs: controllerAs,
-      templateUrl: template,
+  openSeparateModal() {
+    return this.separateModal({
+      templateUrl: 'app/components/modal/modal.html',
       placement: 'center',
       container: 'body',
       show: true
-    })
+    });
   }
+
+
 
 }
