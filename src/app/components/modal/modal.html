@@ -2,19 +2,19 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$hide()">&times;</button>
         <h4 class="modal-title">{{modalCntr.title}}</h4>
       </div>
       <div class="modal-body">
 
-        <p class="text-warning">{{modalCntr.header}}</p>
+        <p class="text-warning">{{modalCntr.body}}</p>
 
       </div>
       <div class="modal-footer">
 
         <p class="text-left">{{modalCntr.footer}}</p>
 
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$hide(); modalCntr.test();">Close</button>
         <button type="button" class="btn btn-primary" data-ng-click="modalCntr.callbackbuttonright(); $event.stopPropagation()">Launch Alert</button>
 
       </div>

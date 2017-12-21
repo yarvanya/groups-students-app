@@ -2,18 +2,11 @@ export function ModalDirective() {
   'ngInject';
 
   let directive = {
-    restrict: 'E',
     scope: {
-      title: '=modalTitle',
-      header: '=modalHeader',
-      body: '=modalBody',
-      footer: '=modalFooter',
-      callbackbuttonleft: '&ngClickLeftButton',
-      callbackbuttonright: '&ngClickRightButton',
-      handler: '=lolo'
+      title: '=',
+      body: '=',
+      footer: '='
     },
-    templateUrl: 'app/components/modal/modal.html',
-    transclude: true,
     controller: ModalController,
     controllerAs: 'modalCntr',
     bindToController: true
@@ -26,24 +19,27 @@ export class ModalController {
   constructor($scope, $modal) {
     'ngInject';
 
-    this.separateModal = $modal;
+    this.myOtherModal = $modal({scope: $scope, templateUrl: 'app/components/modal/modal.html', show: false});
+    $scope.$on('pleaseOpenDeleteModal', event => {
+      console.log(this.title);
+      console.log(this.body);
+      console.log(this.footer);
 
-    $scope.$on('pleaseOpenDeleteModal', (event, data) => {
-      console.log(data);
       console.log(event);
+
       this.openSeparateModal();
     });
+
   }
 
   openSeparateModal() {
-    return this.separateModal({
-      templateUrl: 'app/components/modal/modal.html',
-      placement: 'center',
-      container: 'body',
-      show: true
-    });
+    console.log("1", this.myOtherModal.$isShown);
+    this.myOtherModal.$promise.then(this.myOtherModal.show);
+    console.log('2',this.myOtherModal.$isShown);
   }
 
-
+  test() {
+    console.log('3',this.myOtherModal.$isShown);
+  }
 
 }

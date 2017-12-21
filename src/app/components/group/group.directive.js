@@ -5,7 +5,7 @@ export function GroupDirective() {
   'ngInject';
 
   let directive = {
-    restrict: 'C',
+    restrict: 'EA',
     templateUrl: 'app/components/group/group.html',
     controller: GroupController,
     controllerAs: 'vm',
@@ -19,9 +19,6 @@ export class GroupController {
   constructor(groups, students, $alert, $scope) {
     'ngInject';
 
-    this.title="title";
-    this.body="body";
-    this.footer="footer";
 
     this.groupsList = groups;
     this.studentsList = students;
@@ -29,13 +26,15 @@ export class GroupController {
     this.editedGroup = {};
     this.groupAlert = $alert;
     this.groupScope = $scope;
+    this.title="Group Title";
+    this.body="Group Body";
+    this.footer="Group Footer";
   }
 
   selectGroup(group) {
     this.clickedGroup = group;
     this.editedGroup = Object.assign({}, this.clickedGroup);
-
-    this.groupScope.$broadcast('pleaseOpenDeleteModal', group);
+    this.groupScope.$broadcast('pleaseOpenDeleteModal');
   }
 
   openGroupAlert(content) {
