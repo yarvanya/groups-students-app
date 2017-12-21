@@ -3,9 +3,7 @@ export function ModalDirective() {
 
   let directive = {
     scope: {
-      title: '=',
-      body: '=',
-      footer: '='
+      modalParams: '='
     },
     controller: ModalController,
     controllerAs: 'modalCntr',
@@ -20,26 +18,15 @@ export class ModalController {
     'ngInject';
 
     this.myOtherModal = $modal({scope: $scope, templateUrl: 'app/components/modal/modal.html', show: false});
-    $scope.$on('pleaseOpenDeleteModal', event => {
-      console.log(this.title);
-      console.log(this.body);
-      console.log(this.footer);
-
-      console.log(event);
-
+    $scope.$on('pleaseOpenDeleteModal', (event, data) => {
+      this.data = data;
       this.openSeparateModal();
     });
-
   }
 
   openSeparateModal() {
-    console.log("1", this.myOtherModal.$isShown);
+    console.log(this.modalParams);
     this.myOtherModal.$promise.then(this.myOtherModal.show);
-    console.log('2',this.myOtherModal.$isShown);
-  }
-
-  test() {
-    console.log('3',this.myOtherModal.$isShown);
   }
 
 }

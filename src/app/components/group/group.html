@@ -20,7 +20,7 @@
             class="btn btn-info"
             data-animation="am-fade-and-slide-top"
             data-template-url="app/components/group/editGroupModal.html"
-            ng-click="group.selectGroup(groupItem)"
+            ng-click="group.selectGroupForEditing(groupItem)"
           >
             Edit
           </button>
@@ -29,7 +29,7 @@
           <button
             type="button"
             class="btn btn-danger"
-            ng-click="group.selectGroup(groupItem)"
+            ng-click="group.selectGroupForDeleting(groupItem)"
           >
             Delete
           </button>
@@ -47,11 +47,6 @@
     Add new group
   </button>
 
-  <modal
-    title="group.title"
-    body="group.body"
-    footer="group.footer"
-  >
-  </modal>
+  <modal modal-params="group.modalParams"></modal>
 
 </div>

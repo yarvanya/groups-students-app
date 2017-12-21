@@ -3,21 +3,32 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$hide()">&times;</button>
-        <h4 class="modal-title">{{modalCntr.title}}</h4>
+        <h4 class="modal-title">Deleting {{modalCntr.modalParams.title}}</h4>
       </div>
+
+
       <div class="modal-body">
-
-        <p class="text-warning">{{modalCntr.body}}</p>
-
+        <div class="panel panel-default">
+          <div class="panel-body panel-body-for-deleting">
+            <h4>Are you sure you want to delete this: {{modalCntr.modalParams.item.name}} ?
+            </h4>
+            Because all data will be deleted too!
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-dismiss="modal"
+            ng-click="modalCntr.modalParams.action(modalCntr.modalParams.item);$hide();"
+          >
+            Yes
+          </button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="$hide()">No</button>
+        </div>
       </div>
-      <div class="modal-footer">
 
-        <p class="text-left">{{modalCntr.footer}}</p>
 
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="$hide(); modalCntr.test();">Close</button>
-        <button type="button" class="btn btn-primary" data-ng-click="modalCntr.callbackbuttonright(); $event.stopPropagation()">Launch Alert</button>
-
-      </div>
     </div>
   </div>
 </div>

@@ -15,7 +15,7 @@ export function StudentDirective() {
 }
 
 export class StudentController {
-  constructor(groups, students, $alert) {
+  constructor(groups, students, $alert, $scope) {
     'ngInject';
 
     this.groupsList = groups;
@@ -24,6 +24,8 @@ export class StudentController {
     this.newStudent = {};
     this.editedStudent = {};
     this.studentAlert = $alert;
+    this.studentScope = $scope;
+    this.title = "Deleting student";
   }
 
   renderStudentsData() {
@@ -36,13 +38,25 @@ export class StudentController {
     });
   }
 
-  selectStudent(student) {
+  selectStudentForEditing(student) {
     this.clickedStudent = student;
     this.editedStudent = Object.assign({}, this.clickedStudent);
   }
 
+  selectStudentForDeleting(student) {
+    this.modalParams = {
+      title: "student",
+      item: student,
+      service: this.studentsList,
+      action: this.deleteStudent,
+      alert: this.studentAlert,
+      alertOpen: this.openStudentAlert
+    };
+    this.studentScope.$broadcast('pleaseOpenDeleteModal');
+  }
+
   openStudentAlert(content) {
-    this.studentAlert({
+    this.alert({
       title: 'Success!',
       content: content,
       type: 'success',
@@ -51,7 +65,7 @@ export class StudentController {
   }
 
   createStudentFieldValidation(group) {
-    if (this.newStudent.fullName && this.newStudent.email && this.newStudent.age && group) {
+    if (this.newStudent.name && this.newStudent.email && this.newStudent.age && group) {
       return false;
     }
     return true;
@@ -59,7 +73,7 @@ export class StudentController {
 
   updateStudentFieldValidation(editedStudent) {
     this.clickedStudentForValidate = Object.assign({}, this.clickedStudent, editedStudent);
-    if (this.clickedStudentForValidate.fullName && this.clickedStudentForValidate.email && this.clickedStudentForValidate.age) {
+    if (this.clickedStudentForValidate.name && this.clickedStudentForValidate.email && this.clickedStudentForValidate.age) {
       return false;
     }
     return true;
@@ -80,7 +94,7 @@ export class StudentController {
   }
 
   deleteStudent(student) {
-    this.studentsList.splice(this.studentsList.indexOf(student), 1);
-    this.openStudentAlert(`${messages.deleteStudent} ${this.clickedStudent.fullName}`);
+    this.service.splice(this.service.indexOf(student), 1);
+    this.alertOpen(`${messages.deleteStudent} ${student.name}`);
   }
 }
