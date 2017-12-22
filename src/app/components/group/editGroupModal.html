@@ -13,8 +13,8 @@
               <input
                 type="text"
                 class="form-control"
-                ng-value="groupCntr.clickedGroup.name"
-                ng-model="groupCntr.editedGroup.name"
+                ng-value="group.clickedGroup.name"
+                ng-model="group.editedGroup.name"
                 required
               >
             </div>
@@ -25,8 +25,8 @@
               <input
                 type="text"
                 class="form-control"
-                ng-value="groupCntr.clickedGroup.curatorName"
-                ng-model="groupCntr.editedGroup.curatorName"
+                ng-value="group.clickedGroup.curatorName"
+                ng-model="group.editedGroup.curatorName"
                 required
               >
             </div>
@@ -36,8 +36,8 @@
               <button
                 type="submit"
                 class="btn btn-info"
-                ng-disabled="groupCntr.updateGroupFieldValidation(group.editedGroup)"
-                ng-click="groupCntr.updateGroup(group.editedGroup);$hide();"
+                ng-disabled="group.updateGroupFieldValidation(group.editedGroup)"
+                ng-click="group.updateGroup(group.editedGroup);$hide();"
               >
                 Update
               </button>
