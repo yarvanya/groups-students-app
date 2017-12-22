@@ -22,7 +22,7 @@ export class GroupController {
     this.studentsList = students;
     this.newGroup = {};
     this.editedGroup = {};
-    this.groupAlert = $alert;
+    this.alert = $alert;
     this.groupScope = $scope;
     this.modalParams = {};
   }
@@ -38,7 +38,7 @@ export class GroupController {
       item: group,
       service: this.groupsList,
       action: this.deleteGroup,
-      alert: this.groupAlert,
+      alert: this.alert,
       alertOpen: this.openGroupAlert
     };
     this.groupScope.$broadcast('pleaseOpenDeleteModal');
@@ -85,8 +85,13 @@ export class GroupController {
   }
 
   deleteGroup(group) {
-    this.service.splice(this.service.indexOf(group), 1);
-    this.alertOpen(`${messages.deleteGroup} ${group.name}`);
+    if (this.service) {
+      this.service.splice(this.service.indexOf(group), 1);
+      this.alertOpen(`${messages.deleteGroup} ${group.name}`);
+    } else {
+      this.groupsList.splice(this.groupsList.indexOf(group), 1);
+      this.openGroupAlert(`${messages.deleteGroup} ${group.name}`);
+    }
   }
 
 }

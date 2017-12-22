@@ -23,9 +23,8 @@ export class StudentController {
     this.renderStudentsData();
     this.newStudent = {};
     this.editedStudent = {};
-    this.studentAlert = $alert;
+    this.alert = $alert;
     this.studentScope = $scope;
-    this.title = "Deleting student";
   }
 
   renderStudentsData() {
@@ -49,7 +48,7 @@ export class StudentController {
       item: student,
       service: this.studentsList,
       action: this.deleteStudent,
-      alert: this.studentAlert,
+      alert: this.alert,
       alertOpen: this.openStudentAlert
     };
     this.studentScope.$broadcast('pleaseOpenDeleteModal');
@@ -94,7 +93,12 @@ export class StudentController {
   }
 
   deleteStudent(student) {
-    this.service.splice(this.service.indexOf(student), 1);
-    this.alertOpen(`${messages.deleteStudent} ${student.name}`);
+    if (this.service) {
+      this.service.splice(this.service.indexOf(student), 1);
+      this.alertOpen(`${messages.deleteStudent} ${student.name}`);
+    } else {
+      this.studentsList.splice(this.studentsList.indexOf(student), 1);
+      this.openStudentAlert(`${messages.deleteStudent} ${student.name}`);
+    }
   }
 }
