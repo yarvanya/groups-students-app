@@ -2,9 +2,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" ng-click="$hide()">&times;</button>
-        <h4 class="modal-title">Edit this group</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">{{group.data.eventName}} group</h4>
       </div>
+
+
       <div class="modal-body">
         <form class="form-horizontal">
           <div class="form-group">
@@ -13,8 +15,7 @@
               <input
                 type="text"
                 class="form-control"
-                ng-value="group.clickedGroup.name"
-                ng-model="group.editedGroup.name"
+                ng-model="group.data.model.name"
                 required
               >
             </div>
@@ -25,8 +26,7 @@
               <input
                 type="text"
                 class="form-control"
-                ng-value="group.clickedGroup.curatorName"
-                ng-model="group.editedGroup.curatorName"
+                ng-model="group.data.model.curatorName"
                 required
               >
             </div>
@@ -36,16 +36,17 @@
               <button
                 type="submit"
                 class="btn btn-info"
-                ng-disabled="group.updateGroupFieldValidation(group.editedGroup)"
-                ng-click="group.updateGroup(group.editedGroup);$hide();"
+                ng-disabled="group.data.validation(group.data.model)"
+                ng-click="group.data.action(group.data.model);$hide();"
               >
-                Update
+                {{group.data.buttonName}}
               </button>
               <button type="button" class="btn btn-danger" ng-click="$hide()">Close</button>
             </div>
           </div>
         </form>
-      </div>
+
+
     </div>
   </div>
 </div>
