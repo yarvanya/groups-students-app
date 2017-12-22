@@ -85,13 +85,8 @@ export class GroupController {
   }
 
   deleteGroup(group) {
-    if (this.service) {
-      this.service.splice(this.service.indexOf(group), 1);
-      this.alertOpen(`${messages.deleteGroup} ${group.name}`);
-    } else {
-      this.groupsList.splice(this.groupsList.indexOf(group), 1);
-      this.openGroupAlert(`${messages.deleteGroup} ${group.name}`);
-    }
+    this.service.splice(this.service.indexOf(group), 1);
+    this.alertOpen(`${messages.deleteGroup} ${group.name}`);
   }
 
 }

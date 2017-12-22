@@ -93,12 +93,8 @@ export class StudentController {
   }
 
   deleteStudent(student) {
-    if (this.service) {
-      this.service.splice(this.service.indexOf(student), 1);
-      this.alertOpen(`${messages.deleteStudent} ${student.name}`);
-    } else {
-      this.studentsList.splice(this.studentsList.indexOf(student), 1);
-      this.openStudentAlert(`${messages.deleteStudent} ${student.name}`);
-    }
+    this.service.splice(this.service.indexOf(student), 1);
+    this.alertOpen(`${messages.deleteStudent} ${student.name}`);
   }
+
 }

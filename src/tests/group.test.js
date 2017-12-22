@@ -83,6 +83,8 @@ describe('GroupController', () => {
 
   it('Should delete selected group from groupsList', () => {
     let groupForDeleting = groupCtrl.clickedGroup;
+    groupCtrl.service = groupCtrl.groupsList;
+    groupCtrl.alertOpen = groupCtrl.alert;
     groupCtrl.deleteGroup(groupForDeleting);
     expect(groupCtrl.groupsList).to.not.include(groupForDeleting);
   });

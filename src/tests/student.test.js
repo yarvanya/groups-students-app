@@ -90,6 +90,8 @@ describe('StudentController', () => {
 
   it('Should delete selected student from studentsList', () => {
     let studentForDeleting = studentCtrl.clickedStudent;
+    studentCtrl.service = studentCtrl.studentsList;
+    studentCtrl.alertOpen = studentCtrl.alert;
     studentCtrl.deleteStudent(studentForDeleting);
     expect(studentCtrl.studentsList).to.not.include(studentForDeleting);
   });
