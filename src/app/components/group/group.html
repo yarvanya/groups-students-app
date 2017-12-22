@@ -19,7 +19,7 @@
             type="button"
             class="btn btn-info"
             data-animation="am-fade-and-slide-top"
-            data-template-url="app/components/group/editGroupModal.html"
+            data-template-url="app/components/group/groupModal.html"
             bs-modal="modal"
             ng-click="group.selectGroupForEditing(groupItem)"
           >
@@ -42,8 +42,9 @@
     type="button"
     class="btn btn-info btn-lg"
     data-animation="am-fade-and-slide-top"
-    data-template-url="app/components/group/createGroupModal.html"
+    data-template-url="app/components/group/groupModal.html"
     bs-modal="modal"
+    ng-click="group.selectDataForCreating()"
   >
     Add new group
   </button>

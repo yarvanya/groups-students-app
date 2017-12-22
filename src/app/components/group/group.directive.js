@@ -27,9 +27,33 @@ export class GroupController {
     this.modalParams = {};
   }
 
+  selectDataForCreating() {
+    this.eventName = "Creating";
+
+    this.data = {
+      eventName: this.eventName,
+      model: this.newGroup,
+      groupsList: this.groupsList,
+      validation: this.validation,
+      action: this.createNewGroup,
+      alert: this.alert,
+      alertOpen: this.openGroupAlert,
+      buttonName: "Create"
+    };
+  }
+
   selectGroupForEditing(group) {
+    this.eventName = "Updating";
     this.clickedGroup = group;
     this.editedGroup = Object.assign({}, this.clickedGroup);
+
+    this.data = {
+      eventName: this.eventName,
+      model: this.clickedGroup,
+      validation: this.validation,
+      event: this.updateGroup,
+      buttonName: "Update"
+    };
   }
 
   selectGroupForDeleting(group) {
@@ -53,30 +77,23 @@ export class GroupController {
     });
   }
 
-  createGroupFieldValidation() {
-    if (this.newGroup.name && this.newGroup.curatorName) {
-      return false;
-    }
-    return true;
-  }
-
-  updateGroupFieldValidation(editedGroup) {
-    this.clickedGroupForValidate = Object.assign({}, this.clickedGroup, editedGroup);
-    if (this.clickedGroupForValidate.name && this.clickedGroupForValidate.curatorName) {
-      return false;
-    }
-    return true;
+  validation() {
+     if (this.model.name && this.model.curatorName) {
+        return false;
+      }
+      return true;
   }
 
   createNewGroup() {
+    console.log(this);
     const groupsListLength = this.groupsList.length;
     const assignGroup = Object.assign({},
       {id: this.groupsList[groupsListLength - 1].id + 1},
-      this.newGroup
+      this.model
     );
     this.groupsList.push(assignGroup);
-    this.openGroupAlert(`${messages.createGroup} ${this.newGroup.name}`);
-    this.newGroup = {};
+    this.alertOpen(`${messages.createGroup} ${this.model.name}`);
+    this.model = {};
   }
 
   updateGroup(editedGroup) {
