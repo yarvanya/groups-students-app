@@ -83,13 +83,13 @@ export class StudentController {
     const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id }, this.newStudent);
     this.studentsList.push(assignStudent);
     this.renderStudentsData();
-    this.openStudentAlert(`${messages.createStudent} ${this.newStudent.fullName}`);
+    this.openStudentAlert(`${messages.createStudent} ${this.newStudent.name}`);
     this.newStudent = {};
   }
 
   updateStudent(editedStudent) {
     this.clickedStudent = Object.assign(this.clickedStudent, editedStudent);
-    this.openStudentAlert(`${messages.updateStudent} ${this.clickedStudent.fullName}`);
+    this.openStudentAlert(`${messages.updateStudent} ${this.clickedStudent.name}`);
   }
 
   deleteStudent(student) {
