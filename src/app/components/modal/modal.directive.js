@@ -25,7 +25,6 @@ export class ModalController {
   }
 
   openSeparateModal() {
-    console.log(this.modalParams);
     this.myOtherModal.$promise.then(this.myOtherModal.show);
   }
 
