@@ -24,7 +24,7 @@
             type="button"
             class="btn btn-info"
             data-animation="am-fade-and-slide-top"
-            data-template-url="app/components/student/editStudentModal.html"
+            data-template-url="app/components/student/studentModal.html"
             bs-modal="modal"
             ng-click="student.selectStudentForEditing(studentItem)"
           >
@@ -47,8 +47,9 @@
     type="button"
     class="btn btn-info btn-lg"
     data-animation="am-fade-and-slide-top"
-    data-template-url="app/components/student/createStudentModal.html"
+    data-template-url="app/components/student/studentModal.html"
     bs-modal="modal"
+    ng-click="student.selectStudentForCreating(studentItem)"
   >
     Create new student
   </button>
