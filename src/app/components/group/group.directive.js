@@ -25,7 +25,7 @@ export class GroupController {
     this.modalParams = {};
   }
 
-  selectDataForCreating() {
+  selectGroupForCreating() {
     this.eventName = "Creating";
     this.newGroup = {};
     this.modalParams = {

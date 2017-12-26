@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" ng-click="$hide()">&times;</button>
-        <h4 class="modal-title">Add new student to the group</h4>
+        <h4 class="modal-title">{{student.modalParams.eventName}} student</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal">
@@ -14,7 +14,7 @@
                 type="text"
                 class="form-control"
                 placeholder="Enter full name"
-                ng-model="student.newStudent.name"
+                ng-model="student.modalParams.model.name"
                 required
               >
             </div>
@@ -26,7 +26,7 @@
                 type="email"
                 class="form-control"
                 placeholder="Enter email"
-                ng-model="student.newStudent.email"
+                ng-model="student.modalParams.model.email"
                 required
               >
             </div>
@@ -40,7 +40,7 @@
                 placeholder="Enter age"
                 min="1"
                 max="99"
-                ng-model="student.newStudent.age"
+                ng-model="student.modalParams.model.age"
                 required
               >
             </div>
@@ -56,7 +56,7 @@
                 required
               >
                 <option value="">Select group</option>
-                <option>{{groupItem.name}}</option>
+                <option ng-click="student.modalParams.validation(student.modalParams.model)">{{groupItem.name}}</option>
               </select>
             </div>
           </div>
@@ -66,13 +66,13 @@
                 type="submit"
                 class="btn btn-info"
                 data-dismiss="modal"
-                ng-disabled="student.createStudentFieldValidation(group)"
-                ng-click="student.createStudent(group);$hide();"
+                ng-disabled="student.modalParams.validation(student.modalParams.model, group);"
+                ng-click="student.modalParams.action(student.modalParams.model, group);$hide();"
               >
-                Create
+                {{student.modalParams.buttonName}}
               </button>
               <button type="button" class="btn btn-danger" ng-click="$hide()">
-                Close
+                Cancel
               </button>
             </div>
           </div>
