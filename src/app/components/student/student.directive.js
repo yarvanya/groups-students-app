@@ -7,7 +7,7 @@ export function StudentDirective() {
     restrict: 'E',
     templateUrl: 'app/components/student/student.html',
     controller: StudentController,
-    controllerAs: 'vm',
+    controllerAs: 'studentCntr',
     bindToController: true
   };
 
@@ -37,9 +37,40 @@ export class StudentController {
     });
   }
 
+  selectStudentForCreating() {
+    this.eventName = "Creating";
+    this.newStudent = {};
+    this.modalParams = {
+      eventName: this.eventName,
+      model: this.newStudent,
+      studentsList: this.studentsList,
+      groupsList: this.groupsList,
+      validation: this.createStudentFieldValidation,
+      action: this.createStudent,
+      renderStudentsData: this.renderStudentsData,
+      alert: this.alert,
+      alertOpen: this.openStudentAlert,
+      buttonName: "Create"
+    };
+  }
+
   selectStudentForEditing(student) {
+    this.eventName = "Editing";
     this.clickedStudent = student;
     this.editedStudent = Object.assign({}, this.clickedStudent);
+    this.modalParams = {
+      eventName: this.eventName,
+      model: this.editedStudent,
+      clickedStudent: this.clickedStudent,
+      studentsList: this.studentsList,
+      groupsList: this.groupsList,
+      validation: this.editStudentFieldValidation,
+      action: this.updateStudent,
+      renderStudentsData: this.renderStudentsData,
+      alert: this.alert,
+      alertOpen: this.openStudentAlert,
+      buttonName: "Update"
+    };
   }
 
   selectStudentForDeleting(student) {
@@ -63,38 +94,44 @@ export class StudentController {
     });
   }
 
-  createStudentFieldValidation(group) {
-    if (this.newStudent.name && this.newStudent.email && this.newStudent.age && group) {
+  createStudentFieldValidation(student, group) {
+    if (this.model.name && this.model.email && this.model.age && group) {
       return false;
     }
     return true;
   }
 
-  updateStudentFieldValidation(editedStudent) {
-    this.clickedStudentForValidate = Object.assign({}, this.clickedStudent, editedStudent);
-    if (this.clickedStudentForValidate.name && this.clickedStudentForValidate.email && this.clickedStudentForValidate.age) {
+  editStudentFieldValidation(student) {
+    this.studentForValidate = Object.assign({}, this.clickedStudent, student);
+    if (this.studentForValidate.name
+      && this.studentForValidate.email
+      && this.studentForValidate.age
+      && this.studentForValidate.group) {
       return false;
     }
     return true;
   }
 
-  createStudent(group) {
+  createStudent(student, group) {
     const studentListLength = this.studentsList.length;
-    const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id }, this.newStudent);
+    const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id }, this.model);
     this.studentsList.push(assignStudent);
     this.renderStudentsData();
-    this.openStudentAlert(`${messages.createStudent} ${this.newStudent.name}`);
-    this.newStudent = {};
+    this.alertOpen(`${messages.createStudent} ${this.model.name}`);
+    this.model = {};
   }
 
-  updateStudent(editedStudent) {
+  updateStudent(editedStudent, group) {
+    if (group) {
+      editedStudent.groupId = group.id;
+    }
     this.clickedStudent = Object.assign(this.clickedStudent, editedStudent);
-    this.openStudentAlert(`${messages.updateStudent} ${this.clickedStudent.name}`);
+    this.renderStudentsData();
+    this.alertOpen(`${messages.updateStudent} ${this.model.name}`);
   }
 
   deleteStudent(student) {
     this.service.splice(this.service.indexOf(student), 1);
     this.alertOpen(`${messages.deleteStudent} ${student.name}`);
   }
-
 }

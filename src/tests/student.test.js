@@ -36,14 +36,14 @@ describe('StudentController', () => {
 
   it('Should add new student to studentsList after validation', () => {
     let group = studentCtrl.groupsList[0];
-    expect(studentCtrl.createStudentFieldValidation(group)).to.be.false;
-    studentCtrl.createStudent(group);
+    studentCtrl.model = studentCtrl.newStudent;
+    studentCtrl.alertOpen = studentCtrl.alert;
+    expect(studentCtrl.createStudentFieldValidation(studentCtrl.newStudent, group)).to.be.false;
+    studentCtrl.createStudent(studentCtrl.newStudent, group);
     let lastStudent = studentCtrl.studentsList[studentCtrl.studentsList.length - 1];
     expect(studentCtrl.studentsList).to.include(lastStudent);
-    expect(studentCtrl.newStudent).to.be.empty;
+    expect(studentCtrl.model).to.be.empty;
   });
-
-
 
   it('Should each property be right type after creating new student', () => {
     let lastStudent = studentCtrl.studentsList[studentCtrl.studentsList.length - 1];
@@ -66,7 +66,7 @@ describe('StudentController', () => {
 
   it('Should update selected student in studentsList after validation', () => {
     editedStudent.name = "Updated Field";
-    expect(studentCtrl.updateStudentFieldValidation(editedStudent)).to.be.false;
+    expect(studentCtrl.editStudentFieldValidation(editedStudent)).to.be.false;
     studentCtrl.updateStudent(editedStudent);
     expect(studentCtrl.studentsList).to.include(editedStudent);
   });
