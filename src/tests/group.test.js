@@ -35,11 +35,12 @@ describe('GroupController', () => {
   });
 
   it('Should add new group to groupList after validation', () => {
-    expect(groupCtrl.createGroupFieldValidation()).to.be.false;
+    groupCtrl.model = groupCtrl.newGroup;
+    groupCtrl.alertOpen = groupCtrl.alert;
+    expect(groupCtrl.validation()).to.be.false;
     groupCtrl.createNewGroup();
     let lastGroup = groupCtrl.groupsList[groupCtrl.groupsList.length - 1];
     expect(groupCtrl.groupsList).to.include(lastGroup);
-    expect(groupCtrl.newGroup).to.be.empty;
   });
 
   let lastGroup = groupCtrl.groupsList[groupCtrl.groupsList.length - 1];
@@ -63,7 +64,7 @@ describe('GroupController', () => {
 
   it('Should update selected group in groupsList after validation', () => {
     editedGroup.name = "NEW-1";
-    expect(groupCtrl.updateGroupFieldValidation(editedGroup)).to.be.false;
+    expect(groupCtrl.validation(editedGroup)).to.be.false;
     groupCtrl.updateGroup(editedGroup);
     expect(groupCtrl.groupsList).to.include(editedGroup);
   });
