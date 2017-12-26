@@ -8,8 +8,8 @@ describe('GroupController', () => {
     {id: 2, name: "TM-5", curatorName: "F B"}
   ];
   let students = [
-    {id: 1, groupId: 1, fullName: "John Doe", email: "jd@gmail.com", age: 25},
-    {id: 2, groupId: 1, fullName: "Harry Potter", email: "hp@gmail.com", age: 25}
+    {id: 1, groupId: 1, name: "John Doe", email: "jd@gmail.com", age: 25},
+    {id: 2, groupId: 1, name: "Harry Potter", email: "hp@gmail.com", age: 25}
   ];
   let $alert = () => {};
   let groupCtrl = new GroupController(groups, students, $alert);
@@ -83,6 +83,8 @@ describe('GroupController', () => {
 
   it('Should delete selected group from groupsList', () => {
     let groupForDeleting = groupCtrl.clickedGroup;
+    groupCtrl.service = groupCtrl.groupsList;
+    groupCtrl.alertOpen = groupCtrl.alert;
     groupCtrl.deleteGroup(groupForDeleting);
     expect(groupCtrl.groupsList).to.not.include(groupForDeleting);
   });

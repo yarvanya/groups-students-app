@@ -4,10 +4,10 @@ export function GroupDirective() {
   'ngInject';
 
   let directive = {
-    restrict: 'E',
+    restrict: 'EA',
     templateUrl: 'app/components/group/group.html',
     controller: GroupController,
-    controllerAs: 'vm',
+    controllerAs: 'groupCntr',
     bindToController: true
   };
 
@@ -15,23 +15,37 @@ export function GroupDirective() {
 }
 
 export class GroupController {
-  constructor(groups, students, $alert) {
+  constructor(groups, students, $alert, $scope) {
     'ngInject';
 
     this.groupsList = groups;
     this.studentsList = students;
     this.newGroup = {};
     this.editedGroup = {};
-    this.groupAlert = $alert;
+    this.alert = $alert;
+    this.groupScope = $scope;
+    this.modalParams = {};
   }
 
-  selectGroup(group) {
+  selectGroupForEditing(group) {
     this.clickedGroup = group;
     this.editedGroup = Object.assign({}, this.clickedGroup);
   }
 
+  selectGroupForDeleting(group) {
+    this.modalParams = {
+      title: "group",
+      item: group,
+      service: this.groupsList,
+      action: this.deleteGroup,
+      alert: this.alert,
+      alertOpen: this.openGroupAlert
+    };
+    this.groupScope.$broadcast('pleaseOpenDeleteModal');
+  }
+
   openGroupAlert(content) {
-    return this.groupAlert({
+    return this.alert({
       title: 'Success!',
       content: content,
       type: 'success',
@@ -71,7 +85,8 @@ export class GroupController {
   }
 
   deleteGroup(group) {
-    this.groupsList.splice(this.groupsList.indexOf(this.clickedGroup), 1);
-    this.openGroupAlert(`${messages.deleteGroup} ${group.name}`);
+    this.service.splice(this.service.indexOf(group), 1);
+    this.alertOpen(`${messages.deleteGroup} ${group.name}`);
   }
+
 }
