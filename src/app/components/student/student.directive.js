@@ -95,19 +95,18 @@ export class StudentController {
     });
   }
 
-  createStudentFieldValidation(student, group) {
-    if (this.model.name && this.model.email && this.model.age && group) {
+  createStudentFieldValidation() {
+    if (this.model.name && this.model.email && this.model.age) {
       return false;
     }
     return true;
   }
 
-  editStudentFieldValidation(student, group) {
+  editStudentFieldValidation(student) {
     this.studentForValidate = Object.assign({}, this.clickedStudent, student);
     if (this.studentForValidate.name
       && this.studentForValidate.email
-      && this.studentForValidate.age
-      && this.studentForValidate.group || group) {
+      && this.studentForValidate.age) {
       return false;
     }
     return true;
@@ -116,8 +115,12 @@ export class StudentController {
   createStudent(student, group) {
     this.model.name = this.model.name.replace(/\s+/g, ' ');
     const studentListLength = this.studentsList.length;
-    const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id }, this.model);
-    this.studentsList.push(assignStudent);
+    if (group) {
+       this.assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id }, this.model);
+    } else {
+      this.assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1 }, this.model);
+    }
+    this.studentsList.push(this.assignStudent);
     this.renderStudentsData();
     this.alertOpen(`${messages.createStudent} ${this.model.name}`);
     this.model = {};
