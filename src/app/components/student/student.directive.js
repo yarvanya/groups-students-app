@@ -113,6 +113,7 @@ export class StudentController {
   }
 
   createStudent(student, group) {
+    this.model.name = this.model.name.replace(/\s+/g, ' ');
     const studentListLength = this.studentsList.length;
     const assignStudent = Object.assign({}, {id: this.studentsList[studentListLength - 1].id + 1, groupId: group.id }, this.model);
     this.studentsList.push(assignStudent);
@@ -125,6 +126,7 @@ export class StudentController {
     if (group) {
       editedStudent.groupId = group.id;
     }
+    editedStudent.name = editedStudent.name.replace(/\s+/g, ' ');
     this.clickedStudent = Object.assign(this.clickedStudent, editedStudent);
     this.renderStudentsData();
     this.alertOpen(`${messages.updateStudent} ${this.model.name}`);
