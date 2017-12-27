@@ -102,12 +102,12 @@ export class StudentController {
     return true;
   }
 
-  editStudentFieldValidation(student) {
+  editStudentFieldValidation(student, group) {
     this.studentForValidate = Object.assign({}, this.clickedStudent, student);
     if (this.studentForValidate.name
       && this.studentForValidate.email
       && this.studentForValidate.age
-      && this.studentForValidate.group) {
+      && this.studentForValidate.group || group) {
       return false;
     }
     return true;

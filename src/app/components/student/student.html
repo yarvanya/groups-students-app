@@ -18,7 +18,10 @@
         <td>{{studentItem.name}}</td>
         <td>{{studentItem.email}}</td>
         <td>{{studentItem.age}}</td>
-        <td>{{studentItem.group}}</td>
+        <td>
+          {{studentItem.group}}
+          <span ng-if="!studentItem.group">-</span>
+        </td>
         <td>
           <button
             type="button"
