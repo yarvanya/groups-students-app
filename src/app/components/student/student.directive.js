@@ -19,6 +19,7 @@ export class StudentController {
     'ngInject';
 
     this.groupsList = groups;
+    this.studentsList = [];
     this.studentsList = students;
     this.renderStudentsData();
     this.newStudent = {};
@@ -28,8 +29,8 @@ export class StudentController {
   }
 
   renderStudentsData() {
-    angular.forEach(this.studentsList, (student) => {
-      angular.forEach(this.groupsList, (group) => {
+    angular.forEach(this.groupsList, (group) => {
+      angular.forEach(this.studentsList, (student) => {
         if (student.groupId === group.id) {
           student.group = group.name;
         }

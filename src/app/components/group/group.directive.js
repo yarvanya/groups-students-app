@@ -23,6 +23,10 @@ export class GroupController {
     this.alert = $alert;
     this.groupScope = $scope;
     this.modalParams = {};
+
+    angular.forEach(this.studentsList, (student) => {
+      student.group = "";
+    });
   }
 
   selectGroupForCreating() {
