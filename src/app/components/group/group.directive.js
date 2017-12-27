@@ -86,6 +86,8 @@ export class GroupController {
   }
 
   createNewGroup() {
+    this.model.name = this.model.name.replace(/\s+/g, ' ');
+    this.model.curatorName = this.model.curatorName.replace(/\s+/g, ' ');
     const groupsListLength = this.groupsList.length;
     const assignGroup = Object.assign({},
       {id: this.groupsList[groupsListLength - 1].id + 1},
@@ -96,6 +98,8 @@ export class GroupController {
   }
 
   updateGroup(editedGroup) {
+    editedGroup.name = editedGroup.name.replace(/\s+/g, ' ');
+    editedGroup.curatorName = editedGroup.curatorName.replace(/\s+/g, ' ');
     this.clickedGroup = Object.assign(this.clickedGroup, editedGroup);
     this.alertOpen(`${messages.updateGroup} ${this.model.name}`);
   }
@@ -104,5 +108,4 @@ export class GroupController {
     this.service.splice(this.service.indexOf(group), 1);
     this.alertOpen(`${messages.deleteGroup} ${group.name}`);
   }
-
 }
