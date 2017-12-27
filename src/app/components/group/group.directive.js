@@ -93,11 +93,13 @@ export class GroupController {
     this.model.name = this.model.name.replace(/\s+/g, ' ');
     this.model.curatorName = this.model.curatorName.replace(/\s+/g, ' ');
     const groupsListLength = this.groupsList.length;
-    const assignGroup = Object.assign({},
-      {id: this.groupsList[groupsListLength - 1].id + 1},
-      this.model
-    );
-    this.groupsList.push(assignGroup);
+    this.lastGroup = this.groupsList[groupsListLength - 1];
+    if (!this.lastGroup) {
+      this.assignGroup = Object.assign({}, {id: 1}, this.model);
+    } else {
+      this.assignGroup = Object.assign({}, {id: this.lastGroup.id + 1}, this.model);
+    }
+    this.groupsList.push(this.assignGroup);
     this.alertOpen(`${messages.createGroup} ${this.model.name}`);
   }
 
